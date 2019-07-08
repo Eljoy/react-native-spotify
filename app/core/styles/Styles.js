@@ -7,6 +7,8 @@ export const colors = {
   black
 };
 
+export const typeScale = [14, 16, 18, 20];
+
 const styles = {
   colors
 };

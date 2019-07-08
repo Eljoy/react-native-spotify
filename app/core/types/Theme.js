@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
 
+const colorType = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
+
 const Theme = PropTypes.shape({
   roundness: 1,
   colors: {
-    primary: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    accent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    background: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    primary: colorType,
+    accent: colorType,
+    background: colorType,
+    text: colorType
   },
   fontFamily: PropTypes.string
 });

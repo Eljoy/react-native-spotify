@@ -8,3 +8,9 @@ export { default as shades } from "./styles/Shades";
 
 export { default as Block } from "./components/layout/Block";
 export { default as Layout } from "./components/layout/Layout";
+
+export { default as AppText } from "./components/Typography/AppText";
+export { default as Header } from "./components/Typography/Header";
+export { default as Title } from "./components/Typography/Title";
+export { default as PrimaryText } from "./components/Typography/PrimaryText";
+export { default as SecondaryText } from "./components/Typography/SecondaryText";
