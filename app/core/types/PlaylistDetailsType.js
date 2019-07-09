@@ -8,13 +8,15 @@ export const Artist = PropTypes.shape({
   name: PropTypes.string.isRequired
 });
 
-export const TrackItem = PropTypes.shape({
-  track: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    artists: PropTypes.arrayOf(Artist).isRequired,
-    preview_url: PropTypes.string
-  })
+const TrackType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  artists: PropTypes.arrayOf(Artist).isRequired,
+  preview_url: PropTypes.string
+});
+
+const TrackItem = PropTypes.shape({
+  track: TrackType
 });
 
 const Tracks = PropTypes.shape({
@@ -39,4 +41,5 @@ const PlaylistDetailsTypes = PropTypes.shape({
   tracks: Tracks
 });
 
+export { TrackType, TrackItem };
 export default PlaylistDetailsTypes;
