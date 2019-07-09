@@ -1,5 +1,6 @@
 export const spaceScale = [
   0,
+  4,
   8,
   16,
   32,
