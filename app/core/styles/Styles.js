@@ -7,7 +7,7 @@ export const colors = {
   black
 };
 
-export const typeScale = [14, 16, 18, 20];
+export const typeScale = [14, 16, 18, 20, 22];
 
 const styles = {
   colors
