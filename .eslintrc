@@ -12,8 +12,6 @@
   "env": {
     "es6": true,
     "react-native/react-native": true,
-    "browser": true,
-    "node": true,
     "jest": true
   },
   "rules": {
@@ -27,6 +25,7 @@
     "spaced-comment": "off",
     "max-len": "off",
     "react/destructuring-assignment": "warn",
-    "react/forbid-foreign-prop-types": "error"
+    "react/forbid-foreign-prop-types": "error",
+    "camelcase": "off"
   }
 }
