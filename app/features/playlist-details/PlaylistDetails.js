@@ -9,7 +9,8 @@ const PlaylistDetails = ({ playlistDetails }) => {
       <PlaylistDescription playlistDetails={playlistDetails}/>
       <Hr/>
       <PlaylistTracks tracks={playlistDetails.tracks.items}/>
-    </AppBackground>);
+    </AppBackground>
+  );
 };
 
 PlaylistDetails.propTypes = {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Dimensions, Image } from "react-native";
-import { Block, Header, PlaylistDetailsType, PrimaryText, SecondaryText, Title } from "../../core";
+import { PlaylistDetailsType, Block, PrimaryText, SecondaryText, Title } from "../../core";
 
 class PlaylistDescription extends PureComponent {
   render() {
@@ -14,7 +14,7 @@ class PlaylistDescription extends PureComponent {
     const totalFollowers = (followers.total / 1000000).toFixed(1);
 
     return (
-      <Block layout="row" paddingScale={2}>
+      <Block layout="row" paddingScale={3}>
         <Block>
           <Image source={{ uri: url }} style={{ width: imageSize, height: imageSize }}/>
         </Block>
