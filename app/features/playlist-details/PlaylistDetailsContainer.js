@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Api, withApi } from "../../core";
 import PlaylistDetails from "./PlaylistDetails";
 
@@ -10,8 +11,9 @@ class PlaylistDetailsContainer extends Component {
   };
 
   async componentDidMount() {
-    const { api } = this.props;
-    const playlistDetails = await api.getPlaylistDetails(ID);
+    const { api, navigation } = this.props;
+    const playlistId = navigation.getParam("playlistId");
+    const playlistDetails = await api.getPlaylistDetails(playlistId);
     this.setState({ playlistDetails });
   }
 
@@ -25,7 +27,11 @@ class PlaylistDetailsContainer extends Component {
 }
 
 PlaylistDetailsContainer.propTypes = {
-  api: Api.isRequired
+  api: Api.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default withApi(PlaylistDetailsContainer);

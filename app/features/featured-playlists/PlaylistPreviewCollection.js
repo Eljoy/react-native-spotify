@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import PlaylistPreview from "./PlaylistPreview";
 import { Playlist, spaceScale } from "../../core";
 
-const PlaylistPreviewCollection = ({ playlists, numColumns = 2, ...props }) => {
+const PlaylistPreviewCollection = ({ playlists, onOpenPlaylist, numColumns = 2, ...props }) => {
   const marginBetweenPreviews = spaceScale[1];
   const window = Dimensions.get("window");
   const previewSize = Math.floor(window.width / numColumns) - 2 * marginBetweenPreviews;
@@ -17,6 +17,7 @@ const PlaylistPreviewCollection = ({ playlists, numColumns = 2, ...props }) => {
       data={playlists}
       renderItem={({ item }) => (
         <PlaylistPreview playlist={item}
+                         onPress={onOpenPlaylist}
                          width={previewSize}
                          height={previewSize}
                          style={style}/>
@@ -30,6 +31,7 @@ const PlaylistPreviewCollection = ({ playlists, numColumns = 2, ...props }) => {
 
 PlaylistPreviewCollection.propTypes = {
   playlists: PropTypes.arrayOf(Playlist).isRequired,
+  onOpenPlaylist: PropTypes.func.isRequired,
   ...FlatList.propTypes
 };
 

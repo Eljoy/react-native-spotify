@@ -1,19 +1,25 @@
 import React, { PureComponent } from "react";
-import { TouchableWithoutFeedback, Image } from "react-native";
+import { TouchableNativeFeedback, Image } from "react-native";
 import PropTypes from "prop-types";
 import { Block, Playlist } from "../../core";
 
 class PlaylistPreview extends PureComponent {
   render() {
-    const { playlist, style, width, height } = this.props;
+    const {
+      onPress,
+      playlist,
+      style,
+      width,
+      height
+    } = this.props;
     const { url } = playlist.images[0];
 
     return (
-      <Block style={style}>
-        <TouchableWithoutFeedback>
+      <TouchableNativeFeedback onPress={() => {onPress(playlist)}}>
+        <Block style={style}>
           <Image source={{ uri: url }} style={{ width, height }}/>
-        </TouchableWithoutFeedback>
-      </Block>
+        </Block>
+      </TouchableNativeFeedback>
     );
   }
 }
@@ -23,7 +29,8 @@ PlaylistPreview.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.any,
   height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  onPress: PropTypes.func.isRequired
 };
 PlaylistPreview.defaultProps = {
   style: {}

@@ -12,7 +12,6 @@ export default class MiniPlayerContainer extends Component {
 
   componentDidMount() {
     TrackPlayer.setupPlayer();
-    TrackPlayer.registerPlaybackService(() => require("./PlayService"));
   }
 
   async componentWillReceiveProps(nextProps) {
@@ -23,6 +22,10 @@ export default class MiniPlayerContainer extends Component {
       await this.addTrack(nextProps.track);
       this.togglePlaying();
     }
+  }
+
+  componentWillUnmount() {
+    this.reset();
   }
 
   togglePlaying = () => {
@@ -48,14 +51,6 @@ export default class MiniPlayerContainer extends Component {
   reset = async () => {
     this.setState({ playing: false });
     await TrackPlayer.reset();
-  };
-
-  setTrack = async (prevTrack, track) => {
-    await TrackPlayer.setupPlayer();
-    if (prevTrack) {
-      await TrackPlayer.remove(prevTrack.id);
-    }
-    await TrackPlayer.add({ id: track.id, url: track.preview_url });
   };
 
   render() {

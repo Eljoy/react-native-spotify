@@ -9,20 +9,27 @@ class FeaturedPlaylists extends Component {
   }
 
   render() {
-    const { playlists } = this.props;
+    const {
+      headerText,
+      playlists,
+      onOpenPlaylist
+    } = this.props;
+
     return (
       <AppBackground paddingScale={2}>
         <Block paddingVerticalScale={2}>
-          <Header>Editor's Picks</Header>
+          <Header>{headerText}</Header>
         </Block>
-        <PlaylistPreviewCollection playlists={playlists}/>
+        <PlaylistPreviewCollection playlists={playlists} onOpenPlaylist={onOpenPlaylist}/>
       </AppBackground>
     );
   }
 }
 
 FeaturedPlaylists.propTypes = {
-  playlists: PropTypes.arrayOf(Playlist).isRequired
+  playlists: PropTypes.arrayOf(Playlist).isRequired,
+  headerText: PropTypes.string.isRequired,
+  onOpenPlaylist: PropTypes.func.isRequired
 };
 
 export default FeaturedPlaylists;
