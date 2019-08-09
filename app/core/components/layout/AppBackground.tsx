@@ -1,13 +1,9 @@
 import React from 'react';
 import Block, { BlockProps } from './Block';
-import { withAppTheme, WithAppThemeProps } from '../../theme/AppTheme';
+import { useAppTheme } from '../..';
 
-const AppBackground = ({
-  style,
-  theme,
-  children,
-  ...props
-}: WithAppThemeProps & BlockProps) => {
+const AppBackground = ({ style, children, ...props }: BlockProps) => {
+  const theme = useAppTheme();
   const appBackgroundStyle = {
     flex: 1,
     backgroundColor: theme.colors.background
@@ -19,4 +15,4 @@ const AppBackground = ({
   );
 };
 
-export default withAppTheme(AppBackground);
+export default AppBackground;

@@ -3,21 +3,10 @@ import Theme from '../types/Theme';
 import DefaultTheme from './DefaultTheme';
 
 const AppThemeContext = React.createContext(DefaultTheme);
+const useAppTheme = () => React.useContext(AppThemeContext);
 
 export interface WithAppThemeProps {
   theme: Theme;
-}
-
-function withAppTheme<P>(
-  Component: React.ComponentType<P & WithAppThemeProps>
-) {
-  return (props: P) => {
-    return (
-      <AppThemeContext.Consumer>
-        {(theme: Theme) => <Component {...props} theme={theme} />}
-      </AppThemeContext.Consumer>
-    );
-  };
 }
 
 interface AppThemeProviderProps {
@@ -32,4 +21,4 @@ const AppThemeProvider = ({
   <AppThemeContext.Provider value={theme} {...props} />
 );
 
-export { AppThemeProvider, withAppTheme };
+export { AppThemeProvider, useAppTheme };

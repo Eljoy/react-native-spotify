@@ -32,6 +32,11 @@ export {
 
 export { default as ApiService } from './services/ApiService';
 export { ApiProvider, withApi } from './services/ApiProvider';
+export {
+  AppThemeProvider,
+  WithAppThemeProps,
+  useAppTheme
+} from './theme/AppTheme';
 
 export { default as PlayButton } from './components/buttons/PlayButton';
 export { default as SplashScreen } from './components/SplashScreen';

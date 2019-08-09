@@ -4,9 +4,9 @@ import {
   PlayButton,
   PrimaryText,
   SecondaryText,
-  Spotify
+  Spotify,
+  useAppTheme
 } from '../../core';
-import { withAppTheme, WithAppThemeProps } from '../../core/theme/AppTheme';
 
 interface MiniPlayerProps {
   track: Spotify.Track;
@@ -18,11 +18,11 @@ interface MiniPlayerProps {
 
 const MiniPlayer = ({
   track,
-  theme,
   togglePlay,
   playing = false,
   visible = false
-}: MiniPlayerProps & WithAppThemeProps) => {
+}: MiniPlayerProps) => {
+  const theme = useAppTheme();
   const artistNames = track.artists.map(artist => artist.name).join(', ');
   const miniPlayerStyle = {
     borderTopWidth: 2,
@@ -48,4 +48,4 @@ const MiniPlayer = ({
   );
 };
 
-export default withAppTheme(MiniPlayer);
+export default MiniPlayer;
