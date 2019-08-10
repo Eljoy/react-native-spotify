@@ -6,13 +6,13 @@ import PlaylistPreviewCollection from './PlaylistPreviewCollection';
 interface FeaturedPlaylistsProps {
   headerText: string;
   playlists: Spotify.Playlist[];
-
+  onEndReached(): void;
   onOpenPlaylist(playlist: Spotify.Playlist): void;
 }
 
 class FeaturedPlaylists extends PureComponent<FeaturedPlaylistsProps> {
   render() {
-    const { headerText, playlists, onOpenPlaylist } = this.props;
+    const { headerText, playlists, onEndReached, onOpenPlaylist } = this.props;
 
     return (
       <AppBackground paddingScale={2}>
@@ -22,6 +22,7 @@ class FeaturedPlaylists extends PureComponent<FeaturedPlaylistsProps> {
         <PlaylistPreviewCollection
           playlists={playlists}
           onOpenPlaylist={onOpenPlaylist}
+          onEndReached={onEndReached}
         />
       </AppBackground>
     );

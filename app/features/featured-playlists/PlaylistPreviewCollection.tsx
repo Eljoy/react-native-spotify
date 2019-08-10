@@ -8,6 +8,7 @@ interface PlaylistPreviewCollectionProps {
   numColumns?: number;
 
   onOpenPlaylist(playlist: Spotify.Playlist): void;
+  onEndReached(): void;
 }
 
 const PlaylistPreviewCollection = ({
