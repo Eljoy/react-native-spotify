@@ -7,7 +7,7 @@
   "plugins": [
     "@typescript-eslint",
     "react-native",
-    "eslint-plugin-react-hooks"
+    "react-hooks"
   ],
   "settings": {
     "import/resolver": {
@@ -16,6 +16,7 @@
           ".js",
           ".jsx",
           ".ts",
+          ".d.ts",
           ".tsx"
         ]
       }
@@ -41,12 +42,15 @@
     ],
     "global-require": "off",
     "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/prefer-interface": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".tsx"] }],
+    "react/no-unescaped-entities": "off",
     "react/jsx-one-expression-per-line": "off",
     "react-native/no-unused-styles": "warn",
     "react-native/split-platform-components": "error",
@@ -57,6 +61,7 @@
     "class-methods-use-this": "off",
     "no-use-before-define": ["error", { "variables": false }],
     "spaced-comment": "off",
+    "no-multiple-empty-lines": ["error", { "max": 1}],
     "react/destructuring-assignment": "warn",
     "react/forbid-foreign-prop-types": "error"
   }

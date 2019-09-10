@@ -1,32 +1,20 @@
 import React from 'react';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import FeaturedPlaylistsContainer from './features/featured-playlists/FeaturedPlaylistsContainer';
-import PlaylistDetailsContainer from './features/playlist-details/PlaylistDetailsContainer';
-import { AppThemeProvider } from './core/theme/AppTheme';
-import { ApiProvider, ApiService } from './core';
-
-const AppNavigator = createStackNavigator(
-  {
-    FeaturedPlaylists: {
-      screen: FeaturedPlaylistsContainer
-    },
-    PlaylistDetails: {
-      screen: PlaylistDetailsContainer
-    }
-  },
-  {
-    headerMode: 'none'
-  }
-);
-
-const AppContainer = createAppContainer(AppNavigator);
+import { Provider } from 'react-redux';
+import store from './store';
+import { ApiProvider, ApiService } from './services';
+import { AppThemeProvider } from './theme';
+import { AppContainer } from './navigation';
+import { AppStatusBar } from './components';
 
 const App = () => (
-  <AppThemeProvider>
-    <ApiProvider api={ApiService}>
-      <AppContainer />
-    </ApiProvider>
-  </AppThemeProvider>
+  <Provider store={store}>
+    <AppThemeProvider>
+      <ApiProvider value={ApiService}>
+        <AppStatusBar />
+        <AppContainer />
+      </ApiProvider>
+    </AppThemeProvider>
+  </Provider>
 );
 
 export default App;

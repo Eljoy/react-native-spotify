@@ -1,22 +1,23 @@
 import React from 'react';
 import { Dimensions, FlatList } from 'react-native';
 import PlaylistPreview from './PlaylistPreview';
-import { spaceScale, Spotify } from '../../core';
+import Spotify from '../../types/Spotify';
+import { spaceScale } from '../../styles';
 
 interface PlaylistPreviewCollectionProps {
-  playlists: Spotify.Playlist[];
+  playlists: Spotify.PlaylistPreview[];
   numColumns?: number;
 
-  onOpenPlaylist(playlist: Spotify.Playlist): void;
+  onOpenPlaylist(playlist: Spotify.PlaylistPreview): void;
   onEndReached(): void;
 }
 
-const PlaylistPreviewCollection = ({
+function PlaylistPreviewCollection({
   playlists,
   onOpenPlaylist,
   numColumns = 2,
   ...props
-}: PlaylistPreviewCollectionProps) => {
+}: PlaylistPreviewCollectionProps) {
   const marginBetweenPreviews = spaceScale[1];
   const window = Dimensions.get('window');
   const previewSize =
@@ -42,6 +43,6 @@ const PlaylistPreviewCollection = ({
       {...props}
     />
   );
-};
+}
 
-export default PlaylistPreviewCollection;
+export default React.memo(PlaylistPreviewCollection);

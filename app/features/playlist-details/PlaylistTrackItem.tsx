@@ -1,6 +1,8 @@
 import React from 'react';
 import { TouchableNativeFeedback, StyleSheet } from 'react-native';
-import { Block, Spotify, PrimaryText, SecondaryText } from '../../core';
+import Spotify from '../../types/Spotify';
+import { Block } from '../../components/layout';
+import { PrimaryText, SecondaryText } from '../../components/typography';
 
 interface PlaylistTrackItemProps {
   track: Spotify.Track;
@@ -8,10 +10,11 @@ interface PlaylistTrackItemProps {
   onPress(track: Spotify.Track): void;
 }
 
-const PlaylistTrackItem = ({ track, onPress }: PlaylistTrackItemProps) => {
+function PlaylistTrackItem({ track, onPress }: PlaylistTrackItemProps) {
   const artistNames = track.artists.map(artist => artist.name).join(', ');
   const disabled = !track.preview_url;
   const playlistTrackItemStyle = [disabled && styles.disabled];
+
   return (
     <TouchableNativeFeedback onPress={() => onPress(track)} disabled={disabled}>
       <Block paddingScale={3} style={playlistTrackItemStyle}>
@@ -20,7 +23,7 @@ const PlaylistTrackItem = ({ track, onPress }: PlaylistTrackItemProps) => {
       </Block>
     </TouchableNativeFeedback>
   );
-};
+}
 
 const styles = StyleSheet.create({
   disabled: {
@@ -28,4 +31,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PlaylistTrackItem;
+export default React.memo(PlaylistTrackItem);
