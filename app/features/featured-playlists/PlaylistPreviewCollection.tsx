@@ -1,14 +1,15 @@
-import React from 'react';
-import { Dimensions, FlatList } from 'react-native';
+import React, { useMemo } from 'react';
+import { FlatList } from 'react-native';
 import PlaylistPreview from './PlaylistPreview';
 import Spotify from '../../types/Spotify';
-import { spaceScale } from '../../styles';
+import { wp } from '../../components/layout';
+import { useDeviceOrientation } from '../../hooks';
 
 interface PlaylistPreviewCollectionProps {
   playlists: Spotify.PlaylistPreview[];
   numColumns?: number;
 
-  onOpenPlaylist(playlist: Spotify.PlaylistPreview): void;
+  onOpenPlaylist(playlistId: string): void;
   onEndReached(): void;
 }
 
@@ -18,27 +19,33 @@ function PlaylistPreviewCollection({
   numColumns = 2,
   ...props
 }: PlaylistPreviewCollectionProps) {
-  const marginBetweenPreviews = spaceScale[1];
-  const window = Dimensions.get('window');
-  const previewSize =
-    Math.floor(window.width / numColumns) - 2 * marginBetweenPreviews;
-  const style = {
-    margin: marginBetweenPreviews
-  };
-
+  const orientation = useDeviceOrientation();
+  const { previewStyle, previewSize } = useMemo(
+    () => ({
+      previewSize: wp('48%'),
+      previewStyle: {
+        margin: wp('1%')
+      }
+    }),
+    [orientation]
+  );
   return (
     <FlatList
       data={playlists}
+      key={orientation.portrait ? 'h' : 'v'}
       renderItem={({ item }) => (
         <PlaylistPreview
-          playlist={item}
+          playlistId={item.id}
+          previewImage={item.images[0]}
           onPress={onOpenPlaylist}
           width={previewSize}
           height={previewSize}
-          style={style}
+          style={previewStyle}
         />
       )}
-      numColumns={numColumns}
+      alwaysBounceVertical
+      numColumns={orientation.portrait ? numColumns : undefined}
+      horizontal={orientation.landscape}
       keyExtractor={playlist => playlist.id}
       {...props}
     />

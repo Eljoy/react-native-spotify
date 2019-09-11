@@ -1,34 +1,34 @@
 import React from 'react';
-import { TouchableNativeFeedback, Image } from 'react-native';
+import { TouchableNativeFeedback, Image, ViewStyle } from 'react-native';
 import Spotify from '../../types/Spotify';
 import { Block } from '../../components/layout';
 
 interface PlaylistPreviewProps {
-  playlist: Spotify.PlaylistPreview;
-  style?: any;
+  playlistId: string;
+  previewImage: Spotify.Image;
+  style?: ViewStyle;
   height: number;
   width: number;
 
-  onPress(playlist: Spotify.PlaylistPreview): void;
+  onPress(playlistId: string): void;
 }
 
 function PlaylistPreview({
   onPress,
-  playlist,
+  previewImage,
+  playlistId,
   style,
   width,
   height
 }: PlaylistPreviewProps) {
-  const { url } = playlist.images[0];
-
   return (
     <TouchableNativeFeedback
       onPress={() => {
-        onPress(playlist);
+        onPress(playlistId);
       }}
     >
       <Block style={style}>
-        <Image source={{ uri: url }} style={{ width, height }} />
+        <Image source={{ uri: previewImage.url }} style={{ width, height }} />
       </Block>
     </TouchableNativeFeedback>
   );
