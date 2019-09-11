@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { FlatList } from 'react-native';
 import PlaylistPreview from './PlaylistPreview';
 import Spotify from '../../types/Spotify';
@@ -20,15 +20,13 @@ function PlaylistPreviewCollection({
   ...props
 }: PlaylistPreviewCollectionProps) {
   const orientation = useDeviceOrientation();
-  const { previewStyle, previewSize } = useMemo(
-    () => ({
-      previewSize: wp('48%'),
-      previewStyle: {
-        margin: wp('1%')
-      }
-    }),
-    [orientation]
-  );
+  const [previewSize, setPreviewSize] = useState(wp('48%'));
+  const [margin, setMargin] = useState(wp('1%'));
+  useMemo(() => {
+    setPreviewSize(wp('48%'));
+    setMargin(wp('1%'));
+  }, [orientation]);
+
   return (
     <FlatList
       data={playlists}
@@ -40,7 +38,7 @@ function PlaylistPreviewCollection({
           onPress={onOpenPlaylist}
           width={previewSize}
           height={previewSize}
-          style={previewStyle}
+          style={{ margin }}
         />
       )}
       alwaysBounceVertical
