@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useNavigation } from 'react-navigation-hooks';
 import { FlatList } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import PlaylistDescription from './PlaylistDescription';
 import useSelectedPlaylist from './useSelectedPlaylist';
 import AppBackground from '../../components/layout/AppBackground';
@@ -9,13 +9,9 @@ import MiniPlayer from '../player/MiniPlayer';
 import PlaylistTrackItem from './PlaylistTrackItem';
 import { usePlayer } from '../player';
 
-interface NavigationParams {
-  playlistId: number;
-}
-
 function PlaylistDetailsScreen() {
-  const navigation = useNavigation<NavigationParams>();
-  const playlistId = navigation.getParam('playlistId');
+  const route = useRoute();
+  const { playlistId } = route.params as { playlistId: string };
   const { playlist, doFetch } = useSelectedPlaylist(playlistId);
   const { playerState, playTrack } = usePlayer();
 
@@ -29,8 +25,8 @@ function PlaylistDetailsScreen() {
 
   return (
     <AppBackground>
-      <PlaylistDescription playlistDetails={playlist} />
-      <Hr />
+      <PlaylistDescription playlistDetails={playlist}/>
+      <Hr/>
       <FlatList
         data={playlist.tracks.items}
         renderItem={({ item }) => (
@@ -41,7 +37,7 @@ function PlaylistDetailsScreen() {
         )}
         keyExtractor={item => item.track.id}
       />
-      <MiniPlayer visible={!!playerState.currentTrack} />
+      <MiniPlayer visible={!!playerState.currentTrack}/>
     </AppBackground>
   );
 }

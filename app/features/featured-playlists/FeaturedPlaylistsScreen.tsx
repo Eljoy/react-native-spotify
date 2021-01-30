@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import useFeaturedPlaylists from './useFeaturedPlaylists';
 import SplashScreen from '../../components/SplashScreen';
 import PlaylistPreviewCollection from './PlaylistPreviewCollection';
 import AppBackground from '../../components/layout/AppBackground';
+import { ScreenNames } from '../../navigation';
 
 function FeaturedPlaylistsScreen() {
   const { navigate } = useNavigation();
@@ -13,7 +14,7 @@ function FeaturedPlaylistsScreen() {
   }, []);
 
   const openPlaylist = (playlistId: string) => {
-    navigate('PlaylistDetails', { playlistId });
+    navigate(ScreenNames.PlaylistDetails, { playlistId });
   };
 
   return (
