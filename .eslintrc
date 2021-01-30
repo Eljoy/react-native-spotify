@@ -1,8 +1,12 @@
 {
   "extends": [
     "airbnb",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/react",
+    "prettier/standard"
   ],
   "plugins": [
     "@typescript-eslint",
@@ -48,6 +52,7 @@
     "@typescript-eslint/prefer-interface": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".tsx"] }],
     "react/no-unescaped-entities": "off",
