@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Dimensions, ScaledSize } from 'react-native';
-import { ScreenProps } from 'react-navigation';
 
 const screen = Dimensions.get('screen');
+
+type ScreenProps = {
+  width: number
+  height: number
+}
 
 export default function() {
   const isOrientationPortrait = ({ width, height }: ScreenProps) =>
